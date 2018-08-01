@@ -1,0 +1,5 @@
+{
+    "require": {
+        "athari/yalinqo": "^2.0"
+    }
+}

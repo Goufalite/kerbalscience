@@ -1,0 +1,203 @@
+{
+"situations" : [
+	{"name":"SrfLanded","notSciences":["infraredTelescope"]},
+	{"name":"SrfSplashed","notSciences":["seismicScan","atmosphereAnalysis","infraredTelescope"]},
+	{"name":"FlyingLow","notSciences":["gravityScan","seismicScan","surfaceSample","infraredTelescope"]},
+	{"name":"FlyingHigh","notSciences":["gravityScan","seismicScan","surfaceSample","infraredTelescope"]},
+	{"name":"InSpaceLow","notSciences":["seismicScan","surfaceSample","atmosphereAnalysis","infraredTelescope"]},
+	{"name":"InSpaceHigh","notSciences":["seismicScan","surfaceSample","atmosphereAnalysis"]}
+],
+"recoveries": ["Surfaced","FlewBy","Flew","SubOrbited","Orbited"],
+"foundScienceType" : [],
+"foundBodies": [""],
+"translationSeparator": [{"fr-fr":" d(?:e |’|')"}],
+"translateBiomes":[],
+"bodies":[
+	{
+		"name":"Kerbin",
+		"translation": [{"fr-fr":"Kerbin"}],
+		"atmosphere": true,
+		"water": false,
+		"landable": true,
+		"atmosphereLimit": [18,70],
+		"spaceLimit": 250,
+		"filterName": "exotic",
+		"showBiomes": ["Runway","KSC","SPH","Administration","AstronautComplex","MissionControl","R&D","VAB","TrackingStation","LaunchPad","FlagPole","Baikerbanur","BaikerbanurLaunchpad","R&DCornerLab","R&DWindTunnel","R&DTanks","R&DSideLab","R&DSmallLab","R&DMainBuilding","TrackingStationHub","SPHMainBuilding","VABPodMemorial","TrackingStationDishEast","TrackingStationDishSouth","VABRoundTank","TrackingStationDishNorth","Crawlerway","VABTanks","SPHTanks","SPHWaterTower","SPHRoundTank","IslandAirfield"],
+		"biomes": []
+	},
+	{
+		"name":"Sun",
+		"translation": [{"fr-fr":"Soleil"}],
+		"atmosphere": true,
+		"water": false,
+		"landable": false,
+		"atmosphereLimit": [18,600],
+		"spaceLimit": 1000000,
+		"biomes":["Global"]
+	},
+	{
+		"name":"Moho",
+		"translation": [{"fr-fr":"Moho"}],
+		"atmosphere": false,
+		"water": false,
+		"landable": true,
+		"atmosphereLimit": [],
+		"spaceLimit": 80,
+		"biomes":["Global"]
+	},
+	{
+		"name":"Eve",
+		"translation": [{"fr-fr":"Eve"}],
+		"atmosphere": true,
+		"water": true,
+		"landable": true,
+		"atmosphereLimit": [22,90],
+		"spaceLimit": 400,
+		"biomes":["Global"]
+	},
+	{
+		"name":"Gilly",
+		"translation": [{"fr-fr":"Gilly"}],
+		"atmosphere": false,
+		"water": false,
+		"landable": true,
+		"atmosphereLimit": [],
+		"spaceLimit": 6,
+		"biomes":["Global"]
+	},
+	{
+		"name":"Kerbin",
+		"translation": [{"fr-fr":"Kerbin"}],
+		"atmosphere": true,
+		"water": true,
+		"landable": true,
+		"atmosphereLimit": [18,70],
+		"spaceLimit": 250,
+		"hideBiomes": ["Runway","KSC","SPH","Administration","AstronautComplex","MissionControl","R&D","VAB","TrackingStation","LaunchPad","FlagPole","Baikerbanur","BaikerbanurLaunchpad","R&DCornerLab","R&DWindTunnel","R&DTanks","R&DSideLab","R&DSmallLab","R&DMainBuilding","TrackingStationHub","SPHMainBuilding","VABPodMemorial","TrackingStationDishEast","TrackingStationDishSouth","VABRoundTank","TrackingStationDishNorth","Crawlerway","VABTanks","SPHTanks","SPHWaterTower","SPHRoundTank","IslandAirfield","VABMainBuilding","R&DObservatory"],
+		"biomes":["Global"]
+	},
+	{
+		"name":"Mun",
+		"translation": [{"fr-fr":"La Mune"}],
+		"atmosphere": false,
+		"water": false,
+		"landable": true,
+		"atmosphereLimit": [],
+		"spaceLimit": 60,
+		"biomes":["Global"]
+	},
+	{
+		"name":"Minmus",
+		"translation": [{"fr-fr":"Minmus"}],
+		"atmosphere": false,
+		"water": false,
+		"landable": true,
+		"atmosphereLimit": [],
+		"spaceLimit": 30,
+		"biomes":["Global"]
+	},
+	{
+		"name":"Duna",
+		"translation": [{"fr-fr":"Duna"}],
+		"atmosphere": true,
+		"water": true,
+		"landable": true,
+		"atmosphereLimit": [12,50],
+		"spaceLimit": 140,
+		"biomes":["Global"]
+	},
+	{
+		"name":"Ike",
+		"translation": [{"fr-fr":"Ike"}],
+		"atmosphere": false,
+		"water": false,
+		"landable": true,
+		"atmosphereLimit": [],
+		"spaceLimit": 50,
+		"biomes":["Global"]
+	},
+	{
+		"name":"Dres",
+		"translation": [{"fr-fr":"Dres"}],
+		"atmosphere": false,
+		"water": false,
+		"landable": true,
+		"atmosphereLimit": [],
+		"spaceLimit": 25,
+		"biomes":["Global"]
+	},
+	{
+		"name":"Jool",
+		"translation": [{"fr-fr":"Jool"}],
+		"atmosphere": true,
+		"water": false,
+		"landable": false,
+		"atmosphereLimit": [120,200],
+		"spaceLimit": 4000,
+		"biomes":["Global"]
+	},
+	{
+		"name":"Laythe",
+		"translation": [{"fr-fr":"Laythe"}],
+		"atmosphere": true,
+		"water": true,
+		"landable": true,
+		"atmosphereLimit": [10,50],
+		"spaceLimit": 200,
+		"biomes":["Global"]
+	},
+	{
+		"name":"Vall",
+		"translation": [{"fr-fr":"Vall"}],
+		"atmosphere": false,
+		"water": false,
+		"landable": true,
+		"atmosphereLimit": [],
+		"spaceLimit": 90,
+		"biomes":["Global"]
+	},
+	{
+		"name":"Tylo",
+		"translation": [{"fr-fr":"Tylo"}],
+		"atmosphere": false,
+		"water": false,
+		"landable": true,
+		"atmosphereLimit": [],
+		"spaceLimit": 250,
+		"biomes":["Global"]
+	},
+	{
+		"name":"Bop",
+		"translation": [{"fr-fr":"Bop"}],
+		"atmosphere": false,
+		"water": false,
+		"landable": true,
+		"atmosphereLimit": [],
+		"spaceLimit": 25,
+		"biomes":["Global"]
+	},
+	{
+		"name":"Pol",
+		"translation": [{"fr-fr":"Pol"}],
+		"atmosphere": false,
+		"water": false,
+		"landable": true,
+		"atmosphereLimit": [],
+		"spaceLimit": 22,
+		"biomes":["Global"]
+	},
+	{
+		"name":"Eeloo",
+		"translation": [{"fr-fr":"Eeloo"}],
+		"atmosphere": false,
+		"water": false,
+		"landable": true,
+		"atmosphereLimit": [],
+		"spaceLimit": 60,
+		"biomes":["Global"]
+	}
+]
+
+
+}
+
