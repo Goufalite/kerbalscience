@@ -9,7 +9,9 @@ This program allows you to see your science progress in a more friendly way than
 ## Installation
 
 Kerbal Science Recap is a PHP website with a tiny bit of Javascript. It can run in download mode (provide a persistent.sfs file through a form) or permanent mode (open a file on your filesystem).
+
 If you want to give it a try, go to [the demo website]( http://vrac.goufastyle.org/pr/demo/kerbalscience/kerbalscience.php)
+
 Just clone the repo in your website's filesystem, launch [composer]( https://getcomposer.org/), adjust the config.inc.php file and serve it.
 
 ## Configuration
@@ -90,6 +92,7 @@ Kerbin has a lot of [exotic biomes](https://i.imgur.com/lKWuTu9.png), so I made 
 ## Translation
 
 **Warning : translation of biomes is done AS-IS and is not reliable**
+
 The only way to have a biome translation is in the Science bloc in the persistent savefile :
 ```
 id = mobileMaterialsLab@KerbinSrfLandedRunway
@@ -115,7 +118,9 @@ Of course the solution could be to list all the biomes. but the script is suppos
 ## Asteroids
 
 Asteroids have a display name (ISL-245) and an internal name (_Potatoid2019). The matching is in another file.
+
 Science on asteroids is done per biome, situation and body, which makes it difficult to sort with existing biomes. The choice made was to include asteroids at the bottom of the biome list since for the moment there is only one type of experience per asteroid
+
 Of course you can fork the code to display data on your own using the first table generated.
 
 ## JSON export
