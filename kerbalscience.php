@@ -25,12 +25,110 @@ class ScienceElement {
 }
 
 $bodies = json_decode(file_get_contents("bodies.json"));
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Kerbal science</title>
+<style type='text/css'>
+button
+{
+	font-size:25pt;
+	background-color: white;
+}
+.selectedBody {
+	font-weight: bold;
+	background-color: grey;
+}
+.found {
+	background-color:green;
+	text-align: center;
+	height: 20px;
+}
+
+.global {
+	background-color:yellow;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+.impossibleExp {
+	background-color: orangered;
+	text-align: center;
+	height: 20px;
+}
+</style>
+<script type='text/javascript'>
+var currBody = "<?php echo @$_GET["body"]; ?>";
+function loaded() {
+	var checkboxes = document.querySelectorAll('input[type=checkbox]');
+	if (checkboxes.length != 0)
+	{
+		checkboxes[0].addEventListener("change",toggleksc);
+	}
+	if (currBody == "")
+	{
+			currBody = "Kerbin";	
+	}
+	showBody(currBody);
+	
+}
+
+function toggleksc() {
+	var showtype = document.getElementById("showksc").checked ? "block":"none";
+	console.log(showtype);
+	var elts = document.getElementsByClassName("kscbiome");
+	for(i=0; i< elts.length; i++)
+	{
+		elts[i].style.display = showtype;
+	}
+}
+
+function showBody(body) {
+	var bodies = document.getElementsByClassName("body");
+	for (i=0; i< bodies.length; i++)
+	{
+		bodies[i].style.display = "none";
+	}
+	var btns = document.getElementsByTagName('button');
+	for (i=0; i< btns.length; i++)
+	{
+		btns[i].classList.remove("selectedBody");
+		if (btns[i].id == "btn"+body)
+		{
+			btns[i].classList.add("selectedBody");
+		}
+	}
+	var myBody = document.getElementById("body"+body)
+	{
+		if (myBody) {
+			myBody.style.display = "block";
+			currBody = body;
+		}
+	}
+}
+
+function toggleJson() {
+	var txtjson = document.getElementById("txtjson");
+	txtjson.style.display = txtjson.style.display === 'none' ? '' : 'none';
+}
+
+</script>
+</head>
+<body onload='loaded()'>
+<?php
 if (!defined("SAVEFILE"))
 {
 	echo "
+	<a href='https://github.com/Goufalite/kerbalscience' target='_NEW'>Kerbal Science on Github</a><br/>
 <form enctype='multipart/form-data' action='' method='post'>
   <input type='hidden' name='MAX_FILE_SIZE' value='12000000' />
-  Upload your save file : <input name='savefile' type='file' />
+  Upload your persistent.sfs save file : <input name='savefile' type='file' />
   <input type='submit' value='Submit' />
 </form>";
 if (count($_FILES)==0) exit();
@@ -174,104 +272,9 @@ while ($l = fgets($f))
 }
 fclose($f);
 
-?>
-<!DOCTYPE html>
-<html>
-<head>
-<title>Kerbal science</title>
-<style type='text/css'>
-button
-{
-	font-size:25pt;
-	background-color: white;
-}
-.selectedBody {
-	font-weight: bold;
-	background-color: grey;
-}
-.found {
-	background-color:green;
-	text-align: center;
-	height: 20px;
-}
 
-.global {
-	background-color:yellow;
-}
 
-table {
-    border-collapse: collapse;
-}
-
-table, th, td {
-    border: 1px solid black;
-}
-.impossibleExp {
-	background-color: orangered;
-	text-align: center;
-	height: 20px;
-}
-</style>
-<script type='text/javascript'>
-var currBody = "<?php echo @$_GET["body"]; ?>";
-function loaded() {
-	var checkboxes = document.querySelectorAll('input[type=checkbox]');
-	if (checkboxes.length != 0)
-	{
-		checkboxes[0].addEventListener("change",toggleksc);
-	}
-	if (currBody == "")
-	{
-			currBody = "Kerbin";	
-	}
-	showBody(currBody);
-	
-}
-
-function toggleksc() {
-	var showtype = document.getElementById("showksc").checked ? "block":"none";
-	console.log(showtype);
-	var elts = document.getElementsByClassName("kscbiome");
-	for(i=0; i< elts.length; i++)
-	{
-		elts[i].style.display = showtype;
-	}
-}
-
-function showBody(body) {
-	var bodies = document.getElementsByClassName("body");
-	for (i=0; i< bodies.length; i++)
-	{
-		bodies[i].style.display = "none";
-	}
-	var btns = document.getElementsByTagName('button');
-	for (i=0; i< btns.length; i++)
-	{
-		btns[i].classList.remove("selectedBody");
-		if (btns[i].id == "btn"+body)
-		{
-			btns[i].classList.add("selectedBody");
-		}
-	}
-	var myBody = document.getElementById("body"+body)
-	{
-		if (myBody) {
-			myBody.style.display = "block";
-			currBody = body;
-		}
-	}
-}
-
-function toggleJson() {
-	var txtjson = document.getElementById("txtjson");
-	txtjson.style.display = txtjson.style.display === 'none' ? '' : 'none';
-}
-
-</script>
-</head>
-<body onload='loaded()'>
-<form method='get' action=''>
-<?php
+echo "<form method='get' action=''>";
 
 if (!isset($_GET["body"]))
 {
