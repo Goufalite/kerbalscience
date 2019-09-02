@@ -181,13 +181,14 @@ while ($l = fgets($f))
 	if (preg_match("@^\\t\\tScience@",$l))
 	{
 		$inScience = true;
-		$foundScience = true;
+		
 	}
 	$matches = array();
 	// atmosphereAnalysis@KerbinSrfLandedKSC
 	if (preg_match("/id = ([A-Za-z0-9]+)\@([A-Z][a-z0-9]+)(".$situations.")([A-Za-z0-9&]*)(_[A-Za-z0-9&]*)?/",$l,$matches) 
 		&& $inScience)
 	{
+		$foundScience = true;
 		if (!isset($matches[4]) || $matches[4]=="")
 		{
 			$matches[4]="Global";
@@ -241,7 +242,11 @@ while ($l = fgets($f))
 	if (preg_match("/sci = ([0-9.]+)/",$l,$matches) && $inScience)
 	{
 		$end = end($science);
-		$end->retrieved = round($matches[1],2);
+		// sci is in another block...
+		if ($end != null)
+		{
+			$end->retrieved = round($matches[1],2);
+		}
 	}
 	
 	// translate biome
