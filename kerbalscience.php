@@ -142,7 +142,14 @@ if (count($_FILES)==0) exit();
 } else {
 	
 	try{
-		$f = fopen(SAVEFILE,"r");
+		if (isset($_GET["save"]) && defined("STEAMPATH"))
+		{
+			$f = fopen(STEAMPATH.$_GET["save"]."/persistent.sfs","r");
+		}
+		else
+		{
+			$f = fopen(SAVEFILE,"r");
+		}
 	}
 	catch (Exception $e)
 	{
@@ -176,8 +183,16 @@ $body = "";
 $how = "";
 $where = "";
 
+$sciencemultiplier = 1;
+
 while ($l = fgets($f))
 {
+	// science multiplier
+	if (preg_match("@ScienceGainMultiplier = (.*)@",$l,$matches))
+	{
+		$sciencemultiplier = $matches[1];
+	}
+	
 	if (preg_match("@^\\t\\tScience@",$l))
 	{
 		$inScience = true;
@@ -326,9 +341,9 @@ foreach($bodies->bodies as $currBody)
 			$recovline .= "<div class='found'>";
 			if ($recovery->retrieved < $recovery->many)
 			{
-				$recovline .= $recovery->retrieved." / ";
+				$recovline .= ($recovery->retrieved*$sciencemultiplier)." / ";
 			}
-			$recovline .= $recovery->many."</div>";
+			$recovline .= ($recovery->many*$sciencemultiplier)."</div>";
 		}
 		
 		$recovline .= "</td>";
@@ -396,9 +411,9 @@ foreach($bodies->bodies as $currBody)
 					$allSituations[$currSituation] .= "<div class='found ".($foundScience->where=="Global"?"global":"")."'>";
 						
 					if ($foundScience->retrieved != $foundScience->many) {
-						$allSituations[$currSituation] .= $foundScience->retrieved." / ";
+						$allSituations[$currSituation] .= ($foundScience->retrieved*$sciencemultiplier)." / ";
 					} 
-					$allSituations[$currSituation] .= $foundScience->many;
+					$allSituations[$currSituation] .= ($foundScience->many*$sciencemultiplier);
 					if ($foundScience->retrieved == 0)
 					{
 						$allSituations[$currSituation] .= "!!";
@@ -466,7 +481,7 @@ foreach($bodies->bodies as $currBody)
 			$currAsteroid = $v->asteroid;
 			echo "<h3>".$v->asteroid."</h3>\n";
 		}
-		echo $v->where." / ".$v->how." : ".$v->retrieved."/".$v->many."<br/>\n";
+		echo $v->where." / ".$v->how." : ".($v->retrieved*$sciencemultiplier)."/".($v->many*$sciencemultiplier)."<br/>\n";
 	}
 	echo "</div>\n";
 }
