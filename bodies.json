@@ -7,6 +7,9 @@
 	{"name":"InSpaceLow","notSciences":["seismicScan","surfaceSample","atmosphereAnalysis","infraredTelescope"]},
 	{"name":"InSpaceHigh","notSciences":["seismicScan","surfaceSample","atmosphereAnalysis"]}
 ],
+"forbiddenScience" : {"atmosphere":["deployedIONCollector"],
+						"airless":["atmosphereAnalysis","deployedWeatherReport"]}
+,
 "recoveries": ["Surfaced","FlewBy","Flew","SubOrbited","Orbited"],
 "foundScienceType" : [],
 "foundBodies": [""],
@@ -25,6 +28,7 @@
 		"filterName": "exotic",
 		"showBiomes": ["Runway","KSC","SPH","Administration","AstronautComplex","MissionControl","R&D","VAB","TrackingStation","LaunchPad","FlagPole","Baikerbanur","BaikerbanurLaunchpad","R&DCornerLab","R&DWindTunnel","R&DTanks","R&DSideLab","R&DSmallLab","R&DMainBuilding","TrackingStationHub","SPHMainBuilding","VABPodMemorial","TrackingStationDishEast","TrackingStationDishSouth","VABRoundTank","TrackingStationDishNorth","Crawlerway","VABTanks","SPHTanks","SPHWaterTower","SPHRoundTank","IslandAirfield"],
 		"biomes": [],
+		"nbBiomes": 31,
 		"xpMultiplier":1,
 		"xpSpecial":[0,0,1,2,2]
 	},
@@ -38,6 +42,7 @@
 		"atmosphereLimit": [18,600],
 		"spaceLimit": 1000000,
 		"biomes":["Global"],
+		"nbBiomes": 1,
 		"xpMultiplier":4
 	},
 	{
@@ -50,6 +55,7 @@
 		"atmosphereLimit": [],
 		"spaceLimit": 80,
 		"biomes":["Global"],
+		"nbBiomes": 12,
 		"xpMultiplier":7
 	},
 	{
@@ -62,6 +68,7 @@
 		"atmosphereLimit": [22,90],
 		"spaceLimit": 400,
 		"biomes":["Global"],
+		"nbBiomes": 15,
 		"xpMultiplier":5
 	},
 	{
@@ -74,6 +81,7 @@
 		"atmosphereLimit": [],
 		"spaceLimit": 6,
 		"biomes":["Global"],
+		"nbBiomes": 3,
 		"xpMultiplier":6
 	},
 	{
@@ -87,6 +95,7 @@
 		"spaceLimit": 250,
 		"hideBiomes": ["Runway","KSC","SPH","Administration","AstronautComplex","MissionControl","R&D","VAB","TrackingStation","LaunchPad","FlagPole","Baikerbanur","BaikerbanurLaunchpad","R&DCornerLab","R&DWindTunnel","R&DTanks","R&DSideLab","R&DSmallLab","R&DMainBuilding","TrackingStationHub","SPHMainBuilding","VABPodMemorial","TrackingStationDishEast","TrackingStationDishSouth","VABRoundTank","TrackingStationDishNorth","Crawlerway","VABTanks","SPHTanks","SPHWaterTower","SPHRoundTank","IslandAirfield","VABMainBuilding","R&DObservatory"],
 		"biomes":["Global"],
+		"nbBiomes": 11,
 		"xpMultiplier":1,
 		"xpSpecial":[0,0,1,2,2]
 		
@@ -101,6 +110,7 @@
 		"atmosphereLimit": [],
 		"spaceLimit": 60,
 		"biomes":["Global"],
+		"nbBiomes": 17,
 		"xpMultiplier":2
 	},
 	{
@@ -113,6 +123,7 @@
 		"atmosphereLimit": [],
 		"spaceLimit": 30,
 		"biomes":["Global"],
+		"nbBiomes": 9,
 		"xpMultiplier":2.5
 	},
 	{
@@ -125,6 +136,7 @@
 		"atmosphereLimit": [12,50],
 		"spaceLimit": 140,
 		"biomes":["Global"],
+		"nbBiomes": 14,
 		"xpMultiplier":5
 	},
 	{
@@ -137,6 +149,7 @@
 		"atmosphereLimit": [],
 		"spaceLimit": 50,
 		"biomes":["Global"],
+		"nbBiomes": 8,
 		"xpMultiplier":5
 	},
 	{
@@ -149,6 +162,7 @@
 		"atmosphereLimit": [],
 		"spaceLimit": 25,
 		"biomes":["Global"],
+		"nbBiomes": 8,
 		"xpMultiplier":6
 	},
 	{
@@ -161,6 +175,7 @@
 		"atmosphereLimit": [120,200],
 		"spaceLimit": 4000,
 		"biomes":["Global"],
+		"nbBiomes": 1,
 		"xpMultiplier":6
 	},
 	{
@@ -173,6 +188,7 @@
 		"atmosphereLimit": [10,50],
 		"spaceLimit": 200,
 		"biomes":["Global"],
+		"nbBiomes": 10,
 		"xpMultiplier":8
 	},
 	{
@@ -185,6 +201,7 @@
 		"atmosphereLimit": [],
 		"spaceLimit": 90,
 		"biomes":["Global"],
+		"nbBiomes": 9,
 		"xpMultiplier":8
 	},
 	{
@@ -197,6 +214,7 @@
 		"atmosphereLimit": [],
 		"spaceLimit": 250,
 		"biomes":["Global"],
+		"nbBiomes": 9,
 		"xpMultiplier":8
 	},
 	{
@@ -209,6 +227,7 @@
 		"atmosphereLimit": [],
 		"spaceLimit": 25,
 		"biomes":["Global"],
+		"nbBiomes": 5,
 		"xpMultiplier":8
 	},
 	{
@@ -221,6 +240,7 @@
 		"atmosphereLimit": [],
 		"spaceLimit": 22,
 		"biomes":["Global"],
+		"nbBiomes": 4,
 		"xpMultiplier":8
 	},
 	{
@@ -233,6 +253,7 @@
 		"atmosphereLimit": [],
 		"spaceLimit": 60,
 		"biomes":["Global"],
+		"nbBiomes": 11,
 		"xpMultiplier":10
 	}
 ]
