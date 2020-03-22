@@ -193,14 +193,14 @@ while ($l = fgets($f))
 		$sciencemultiplier = $matches[1];
 	}
 	
-	if (preg_match("@^\\t\\tScience@",$l))
+	if (preg_match("@^\\t\\tScience\b@",$l))
 	{
 		$inScience = true;
 		
 	}
 	$matches = array();
 	// atmosphereAnalysis@KerbinSrfLandedKSC
-	if (preg_match("/id = ([A-Za-z0-9]+)\@([A-Z][a-z0-9]+)(".$situations.")([A-Za-z0-9&]*)(_[A-Za-z0-9&]*)?/",$l,$matches) 
+	if (preg_match("/id = ([A-Za-z0-9_]+)\@([A-Z][a-z0-9]+)(".$situations.")([A-Za-z0-9&]*)(_[A-Za-z0-9&]*)?/",$l,$matches) 
 		&& $inScience)
 	{
 		$foundScience = true;
@@ -332,13 +332,16 @@ foreach($bodies->bodies as $currBody)
 	{
 		echo "<th>".$r."</th>";
 		$recovline .= "<td>";
-		
+		if (!$currBody->atmosphere && $r == "Flew" || ($currBody->name == "Kerbin" && ($r == "Surfaced" || $r == "FlewBy")))
+		{
+			$recovline .= "<div class='impossibleExp'></div>";
+		}
 		$recovery = from($currScience)
 			->where('$v->how == $GLOBALS["r"] && $v->body == $GLOBALS["currBody"]->name')
 			->firstOrDefault();
 		if ($recovery != null)
 		{
-			$recovline .= "<div class='found'>";
+			$recovline .= "<div class='global'>";
 			if ($recovery->retrieved < $recovery->many)
 			{
 				$recovline .= ($recovery->retrieved*$sciencemultiplier)." / ";
@@ -360,6 +363,8 @@ foreach($bodies->bodies as $currBody)
 	{
 		$biomes = $currBody->biomes;
 	}
+	$biomesFound = $currBody->nbBiomes == 1 ? 1 : count($biomes)-1;
+	echo "<br/>Biomes : $biomesFound/$currBody->nbBiomes <progress min='0' max='".$currBody->nbBiomes."' value='".$biomesFound."'></progress><br/>";
 	foreach ($biomes as $currBiome)
 	{
 		if (isset($currBody->hideBiomes) && in_array($currBiome,$currBody->hideBiomes)) continue;
@@ -372,20 +377,49 @@ foreach($bodies->bodies as $currBody)
 		foreach ($bodies->foundScienceType as $i=>$foundScienceType)
 		{
 			if ($foundScienceType == "recovery") continue;
-			echo "<th>".ucFirst(preg_replace("@([A-Z])@","<br/>\\1",$foundScienceType))."</th>";
+			$scienceTypeDisplay = $foundScienceType;
+			if (preg_match("/ROCScience_/",$foundScienceType))
+			{
+				if (!preg_match("/ROCScience_".$currBody->name."/",$foundScienceType)) continue;
+				$match = array();
+				preg_match("/ROCScience_(.*)/",$foundScienceType,$match);
+				$scienceTypeDisplay = substr(ucFirst(preg_replace("@([A-Z])@","<br/>\\1",$match[1])),5);
+				
+			}
+			else {
+				// replace ION
+				$scienceTypeDisplay = preg_replace("/ION/","Ion",$scienceTypeDisplay);
+				$scienceTypeDisplay = ucFirst(preg_replace("@([A-Z])@","<br/>\\1",$scienceTypeDisplay));
+			}
+			
+			
+			echo "<th>".$scienceTypeDisplay."</th>";
 
 			foreach($situationsList as $currSituation)
 			{
 				if (!isset($allSituations[$currSituation])) $allSituations[$currSituation] = "";
 				$allSituations[$currSituation] .= "<td>";
 				
-				// forbidden experiences
-				if (!$currBody->atmosphere &&  $foundScienceType == "atmosphereAnalysis")
+				// atmospheric experiences on airless bodies
+				if($currBody->atmosphere && in_array($foundScienceType,$bodies->forbiddenScience->atmosphere))
+				{
+					$allSituations[$currSituation] .= "<div class='impossibleExp'></div></td>";
+					continue;
+				}
+				if(!$currBody->atmosphere && in_array($foundScienceType,$bodies->forbiddenScience->airless))
 				{
 					$allSituations[$currSituation] .= "<div class='impossibleExp'></div></td>";
 					continue;
 				}
 				
+				// breaking ground
+				if (preg_match("/^(?:ROCScience_|deployed)/",$foundScienceType) && $currSituation!="SrfLanded")
+				{
+					$allSituations[$currSituation] .= "<div class='impossibleExp'></div></td>";
+					continue;
+				}
+				
+				// specific forbidden
 				if (from($bodies->situations)->where('$v->name == $GLOBALS["currSituation"]')->any('in_array($GLOBALS["foundScienceType"],$v->notSciences)'))
 				{
 					$allSituations[$currSituation] .= "<div class='impossibleExp'></div></td>";
