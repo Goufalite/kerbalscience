@@ -332,7 +332,7 @@ foreach($bodies->bodies as $currBody)
 	{
 		echo "<th>".$r."</th>";
 		$recovline .= "<td>";
-		if (!$currBody->atmosphere && $r == "Flew" || ($currBody->name == "Kerbin" && ($r == "Surfaced" || $r == "FlewBy")))
+		if (!$currBody->atmosphere && $r == "Flew" || (!$currBody->landable && $r == "Surfaced") || ($currBody->name == "Kerbin" && ($r == "Surfaced" || $r == "FlewBy")))
 		{
 			$recovline .= "<div class='impossibleExp'></div>";
 		}
