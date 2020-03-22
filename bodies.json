@@ -10,7 +10,7 @@
 "forbiddenScience" : {"atmosphere":["deployedIONCollector"],
 						"airless":["atmosphereAnalysis","deployedWeatherReport"]}
 ,
-"recoveries": ["Surfaced","FlewBy","Flew","SubOrbited","Orbited"],
+"recoveries": ["FlewBy","Orbited","SubOrbited","Flew","Surfaced"],
 "foundScienceType" : [],
 "foundBodies": [""],
 "translationSeparator": [{"fr-fr":" d(?:e |’|')"}],
