@@ -164,7 +164,14 @@ if (count($_FILES)==0) exit();
 } else {
 	
 	try{
-		$f = fopen(SAVEFILE,"r");
+		if (isset($_GET["save"]) && defined("STEAMPATH"))
+		{
+			$f = fopen(STEAMPATH.$_GET["save"]."/persistent.sfs","r");
+		}
+		else
+		{
+			$f = fopen(SAVEFILE,"r");
+		}
 	}
 	catch (Exception $e)
 	{

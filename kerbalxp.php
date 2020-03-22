@@ -164,7 +164,14 @@ if (count($_FILES)==0) exit();
 } else {
 	
 	try{
-		$f = fopen(SAVEFILE,"r");
+		if (isset($_GET["save"]) && defined("STEAMPATH"))
+		{
+			$f = fopen(STEAMPATH.$_GET["save"]."/persistent.sfs","r");
+		}
+		else
+		{
+			$f = fopen(SAVEFILE,"r");
+		}
 	}
 	catch (Exception $e)
 	{
@@ -189,12 +196,13 @@ while ($l = fgets($f))
 		// full save
 		if (isset($kerbal))
 		{
-			$kerbal->careerLog = $careerLog;
+			$kerbal->careerLog = isset($careerLog) ? $careerLog : Array();
 			$kerbal->xp = 0;
 			foreach ($kerbal->careerLog as $b => $a)
 			{
 				$kerbal->xp += situationXp($b,$a);
 			}
+			if (!isset($flightLog)) { $flightLog = Array(); }
 			$flightBodies = array_keys($flightLog);
 			$kerbal->flightLog = $flightLog;
 			$kerbal->pendingXp = 0;
