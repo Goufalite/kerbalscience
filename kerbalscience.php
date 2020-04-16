@@ -44,10 +44,26 @@ button
 	background-color:green;
 	text-align: center;
 	height: 20px;
+	/* font-weight:bold; */
 }
 
 .global {
 	background-color:yellow;
+	text-align: center;
+	height: 20px;
+}
+
+.partial {
+	background-color:#5cd85c;
+}
+
+.partialglobal {
+	background-color:#fff494;
+}
+
+.notretrieved::after
+{
+	content: "!!";
 }
 
 table {
@@ -341,12 +357,15 @@ foreach($bodies->bodies as $currBody)
 			->firstOrDefault();
 		if ($recovery != null)
 		{
-			$recovline .= "<div class='global'>";
-			if ($recovery->retrieved < $recovery->many)
+			$tmprecovline = "";
+			
+			$cssclass = "global";
+			if ($recovery->retrieved*$sciencemultiplier < $recovery->many*$sciencemultiplier - 0.1)
 			{
-				$recovline .= ($recovery->retrieved*$sciencemultiplier)." / ";
+				$cssclass .= " partialglobal";
+				$tmprecovline .= ($recovery->retrieved*$sciencemultiplier)." / ";
 			}
-			$recovline .= ($recovery->many*$sciencemultiplier)."</div>";
+			$recovline .= "<div class='$cssclass'>".$tmprecovline.($recovery->many*$sciencemultiplier)."</div>";
 		}
 		
 		$recovline .= "</td>";
@@ -442,17 +461,29 @@ foreach($bodies->bodies as $currBody)
 				
 				if ($foundScience != null)
 				{
-					$allSituations[$currSituation] .= "<div class='found ".($foundScience->where=="Global"?"global":"")."'>";
-						
-					if ($foundScience->retrieved != $foundScience->many) {
-						$allSituations[$currSituation] .= ($foundScience->retrieved*$sciencemultiplier)." / ";
+					$sitline = "";
+					$cssclass = "found";
+					
+					if ($foundScience->where=="Global")	
+					{
+						$cssclass .= " global";
+					}
+					if ($foundScience->retrieved*$sciencemultiplier < $foundScience->many*$sciencemultiplier - 0.1) {
+						if ($foundScience->where=="Global")
+						{
+							$cssclass .= " partialglobal";
+						}
+						else {
+							$cssclass .= " partial";
+						}
+						$sitline .= ($foundScience->retrieved*$sciencemultiplier)." / ";
 					} 
-					$allSituations[$currSituation] .= ($foundScience->many*$sciencemultiplier);
+					$sitline .= ($foundScience->many*$sciencemultiplier);
 					if ($foundScience->retrieved == 0)
 					{
-						$allSituations[$currSituation] .= "!!";
+						$cssclass .= " notretrieved";
 					}
-					$allSituations[$currSituation] .= "</div>";
+					$allSituations[$currSituation] .= "<div class='$cssclass'>".$sitline."</div>";
 				}
 				$allSituations[$currSituation] .= "</td>";
 			}
