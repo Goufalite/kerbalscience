@@ -1,14 +1,14 @@
 {
 "situations" : [
-	{"name":"SrfLanded","notSciences":["infraredTelescope"]},
-	{"name":"SrfSplashed","notSciences":["seismicScan","atmosphereAnalysis","infraredTelescope"]},
+	{"name":"SrfLanded","notSciences":["infraredTelescope","magnetometer"]},
+	{"name":"SrfSplashed","notSciences":["seismicScan","atmosphereAnalysis","infraredTelescope","magnetometer"]},
 	{"name":"FlyingLow","notSciences":["gravityScan","seismicScan","surfaceSample","infraredTelescope"]},
 	{"name":"FlyingHigh","notSciences":["gravityScan","seismicScan","surfaceSample","infraredTelescope"]},
-	{"name":"InSpaceLow","notSciences":["seismicScan","surfaceSample","atmosphereAnalysis","infraredTelescope"]},
-	{"name":"InSpaceHigh","notSciences":["seismicScan","surfaceSample","atmosphereAnalysis"]}
+	{"name":"InSpaceLow","notSciences":["seismicScan","surfaceSample","infraredTelescope"]},
+	{"name":"InSpaceHigh","notSciences":["seismicScan","surfaceSample"]}
 ],
-"forbiddenScience" : {"atmosphere":["deployedIONCollector"],
-						"airless":["atmosphereAnalysis","deployedWeatherReport"]}
+"specificScience" : {"airless":["deployedIONCollector","magnetometer"],
+						"atmosphere":["atmosphereAnalysis","deployedWeatherReport"]}
 ,
 "recoveries": ["FlewBy","Orbited","SubOrbited","Flew","Surfaced"],
 "foundScienceType" : [],
@@ -26,9 +26,9 @@
 		"atmosphereLimit": [18,70],
 		"spaceLimit": 250,
 		"filterName": "exotic",
-		"showBiomes": ["Runway","KSC","SPH","Administration","AstronautComplex","MissionControl","R&D","VAB","TrackingStation","LaunchPad","FlagPole","Baikerbanur","BaikerbanurLaunchpad","R&DCornerLab","R&DWindTunnel","R&DTanks","R&DSideLab","R&DSmallLab","R&DMainBuilding","TrackingStationHub","SPHMainBuilding","VABPodMemorial","TrackingStationDishEast","TrackingStationDishSouth","VABRoundTank","TrackingStationDishNorth","Crawlerway","VABTanks","SPHTanks","SPHWaterTower","SPHRoundTank","IslandAirfield"],
+		"showBiomes": ["Runway","KSC","SPH","Administration","AstronautComplex","MissionControl","R&D","VAB","TrackingStation","LaunchPad","FlagPole","Baikerbanur","BaikerbanurLaunchpad","R&DCornerLab","R&DWindTunnel","R&DTanks","R&DSideLab","R&DSmallLab","R&DMainBuilding","TrackingStationHub","SPHMainBuilding","VABPodMemorial","TrackingStationDishEast","TrackingStationDishSouth","VABRoundTank","TrackingStationDishNorth","Crawlerway","VABTanks","SPHTanks","SPHWaterTower","SPHRoundTank","IslandAirfield","VABMainBuilding","R&DObservatory","DesertAirfield","DesertLaunchSite","R&DCentralBuilding","WoomerangLaunchSite"],
 		"biomes": [],
-		"nbBiomes": 31,
+		"nbBiomes": 36,
 		"xpMultiplier":1,
 		"xpSpecial":[0,0,1,2,2]
 	},
@@ -93,9 +93,9 @@
 		"landable": true,
 		"atmosphereLimit": [18,70],
 		"spaceLimit": 250,
-		"hideBiomes": ["Runway","KSC","SPH","Administration","AstronautComplex","MissionControl","R&D","VAB","TrackingStation","LaunchPad","FlagPole","Baikerbanur","BaikerbanurLaunchpad","R&DCornerLab","R&DWindTunnel","R&DTanks","R&DSideLab","R&DSmallLab","R&DMainBuilding","TrackingStationHub","SPHMainBuilding","VABPodMemorial","TrackingStationDishEast","TrackingStationDishSouth","VABRoundTank","TrackingStationDishNorth","Crawlerway","VABTanks","SPHTanks","SPHWaterTower","SPHRoundTank","IslandAirfield","VABMainBuilding","R&DObservatory"],
+		"hideBiomes": ["Runway","KSC","SPH","Administration","AstronautComplex","MissionControl","R&D","VAB","TrackingStation","LaunchPad","FlagPole","Baikerbanur","BaikerbanurLaunchpad","R&DCornerLab","R&DWindTunnel","R&DTanks","R&DSideLab","R&DSmallLab","R&DMainBuilding","TrackingStationHub","SPHMainBuilding","VABPodMemorial","TrackingStationDishEast","TrackingStationDishSouth","VABRoundTank","TrackingStationDishNorth","Crawlerway","VABTanks","SPHTanks","SPHWaterTower","SPHRoundTank","IslandAirfield","VABMainBuilding","R&DObservatory","DesertAirfield","DesertLaunchSite","R&DCentralBuilding","WoomerangLaunchSite"],
 		"biomes":["Global"],
-		"nbBiomes": 11,
+		"nbBiomes": 47,
 		"xpMultiplier":1,
 		"xpSpecial":[0,0,1,2,2]
 		
@@ -131,7 +131,7 @@
 		"id":6,
 		"translation": [{"fr-fr":"Duna"}],
 		"atmosphere": true,
-		"water": true,
+		"water": false,
 		"landable": true,
 		"atmosphereLimit": [12,50],
 		"spaceLimit": 140,

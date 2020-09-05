@@ -40,17 +40,32 @@ button
 	font-weight: bold;
 	background-color: grey;
 }
+
+.impossibleExp {
+	background: repeating-linear-gradient(
+	-45deg,
+	#FF0000,
+	#FF0000 2px,
+	#FFFFFF 2px,
+	#FFFFFF 4px);
+	text-align: center;
+	display:inline-block;
+	height:100%;
+	width:100%;
+	margin-top:3px;
+}
+
 .found {
 	background-color:green;
 	text-align: center;
-	height: 20px;
-	/* font-weight:bold; */
+	display:inline-block;
+	height:100%;
+	width:100%;
+	
 }
 
 .global {
 	background-color:yellow;
-	text-align: center;
-	height: 20px;
 }
 
 .partial {
@@ -73,11 +88,12 @@ table {
 table, th, td {
     border: 1px solid black;
 }
-.impossibleExp {
-	background-color: orangered;
-	text-align: center;
-	height: 20px;
+
+td 
+{ 
+	height:1px;
 }
+
 </style>
 <script type='text/javascript'>
 var currBody = "<?php echo @$_GET["body"]; ?>";
@@ -326,6 +342,16 @@ foreach($bodies->bodies as $b)
 	}
 }
 echo "</form>";
+echo "<br/>";
+echo "<table border=1>
+<tr><td><div class=''></div></td><td>Not found</td></tr>
+<tr><td><div class='found'>25</div></td><td>Found completely for this biome</td></tr>
+<tr><td><div class='found partial'>6 / 7</div></td><td>Partially completed for this biome</td></tr>
+<tr><td><div class='found global'>25</div></td><td>Found completely for this body</td></tr>
+<tr><td><div class='found global partialglobal'> 24 / 25</div></td><td>Partially completed for this body</td></tr>
+<tr><td><div class='impossibleExp'></div></td><td>This science experiment is not possible in this situation</td></tr>
+<tr><td><div class='found partial'>0 / 25!!</div></td><td>Not retrieved or transmited yet! Don't lose this!</td></tr>
+</table>";
 
 foreach($bodies->bodies as $currBody)
 {
@@ -382,6 +408,7 @@ foreach($bodies->bodies as $currBody)
 	{
 		$biomes = $currBody->biomes;
 	}
+	// don't count global...
 	$biomesFound = $currBody->nbBiomes == 1 ? 1 : count($biomes)-1;
 	echo "<br/>Biomes : $biomesFound/$currBody->nbBiomes <progress min='0' max='".$currBody->nbBiomes."' value='".$biomesFound."'></progress><br/>";
 	foreach ($biomes as $currBiome)
@@ -399,7 +426,8 @@ foreach($bodies->bodies as $currBody)
 			$scienceTypeDisplay = $foundScienceType;
 			if (preg_match("/ROCScience_/",$foundScienceType))
 			{
-				if (!preg_match("/ROCScience_".$currBody->name."/",$foundScienceType)) continue;
+				if ($foundScienceType == "ROCScience_DunaEjectaOnIke" && $currBody->name != "Ike") continue;
+				if ($foundScienceType != "ROCScience_DunaEjectaOnIke" && !preg_match("/ROCScience_".$currBody->name."/",$foundScienceType)) continue;
 				$match = array();
 				preg_match("/ROCScience_(.*)/",$foundScienceType,$match);
 				$scienceTypeDisplay = substr(ucFirst(preg_replace("@([A-Z])@","<br/>\\1",$match[1])),5);
@@ -420,12 +448,13 @@ foreach($bodies->bodies as $currBody)
 				$allSituations[$currSituation] .= "<td>";
 				
 				// atmospheric experiences on airless bodies
-				if($currBody->atmosphere && in_array($foundScienceType,$bodies->forbiddenScience->atmosphere))
+				if(($currSituation != "InSpaceLow" && $currSituation != "InSpaceHigh" && $currBody->atmosphere) && in_array($foundScienceType,$bodies->specificScience->airless))
 				{
 					$allSituations[$currSituation] .= "<div class='impossibleExp'></div></td>";
 					continue;
 				}
-				if(!$currBody->atmosphere && in_array($foundScienceType,$bodies->forbiddenScience->airless))
+				if((!$currBody->atmosphere || $currSituation == "InSpaceLow" || $currSituation == "InSpaceHigh")
+					&& in_array($foundScienceType,$bodies->specificScience->atmosphere))
 				{
 					$allSituations[$currSituation] .= "<div class='impossibleExp'></div></td>";
 					continue;
