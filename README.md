@@ -108,12 +108,12 @@ Kerbin has a lot of [exotic biomes](https://i.imgur.com/lKWuTu9.png), so I made 
 The only way to have a biome translation is in the Science bloc in the persistent savefile :
 ```
 id = mobileMaterialsLab@KerbinSrfLandedRunway
-title = �tude de mat�riaux de Piste de d�collage
+title = étude de matériaux de Piste de décollage
 ```
 or
 ```
 id = crewReport@KerbinFlyingLowGrasslands
-title = Rapport d'�quipage au-dessus de Prairies de Kerbin
+title = Rapport d'équipage au-dessus de Prairies de Kerbin
 ```
 In french, we have the following pattern :
 ```
@@ -123,7 +123,7 @@ Several problems occur...
 * The [body] goes away when exotic KSC biomes are mentionned
 * Mun is (for the moment) the only body translated to "La Mune" in french, therefore an additional display name for each body is required
 * Some biomes can have "de" in their names
-* In french we also have apostrophes : de Kerbin => d'Eeloo and the title string can mix � and '
+* In french we also have apostrophes : de Kerbin => d'Eeloo and the title string can mix ` and '
 
 Of course the solution could be to list all the biomes. but the script is supposed to be self learning, to encourage exploration, and avoid this writing task...
 
