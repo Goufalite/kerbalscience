@@ -453,13 +453,12 @@ foreach($bodies->bodies as $body)
 		}
 	}
 }
-//from($contracts)
-
 
 /*
 echo "<pre>";
-var_dump($contracts);
+echo json_encode($contracts);
 */
+
 
 ?>
 </body>
