@@ -1,9 +1,9 @@
 {
 "situations" : [
 	{"name":"SrfLanded","notSciences":["infraredTelescope","magnetometer"]},
-	{"name":"SrfSplashed","notSciences":["seismicScan","atmosphereAnalysis","infraredTelescope","magnetometer"]},
-	{"name":"FlyingLow","notSciences":["gravityScan","seismicScan","surfaceSample","infraredTelescope"]},
-	{"name":"FlyingHigh","notSciences":["gravityScan","seismicScan","surfaceSample","infraredTelescope"]},
+	{"name":"SrfSplashed","notSciences":["seismicScan","atmosphereAnalysis","infraredTelescope","magnetometer","evaScience"]},
+	{"name":"FlyingLow","notSciences":["gravityScan","seismicScan","surfaceSample","infraredTelescope","evaScience"]},
+	{"name":"FlyingHigh","notSciences":["gravityScan","seismicScan","surfaceSample","infraredTelescope","evaScience"]},
 	{"name":"InSpaceLow","notSciences":["seismicScan","surfaceSample","infraredTelescope"]},
 	{"name":"InSpaceHigh","notSciences":["seismicScan","surfaceSample"]}
 ],
