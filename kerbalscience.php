@@ -222,7 +222,7 @@ while ($l = fgets($f))
 	// science multiplier
 	if (preg_match("@ScienceGainMultiplier = (.*)@",$l,$matches))
 	{
-		$sciencemultiplier = $matches[1];
+		$sciencemultiplier = trim($matches[1]);
 	}
 	
 	if (preg_match("@^\\t\\tScience\b@",$l))
