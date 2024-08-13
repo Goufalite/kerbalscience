@@ -173,7 +173,8 @@ function toggleJson() {
 </head>
 <body onload='loaded()'>
 <?php
-if (!defined("SAVEFILE"))
+// show the downloader?
+if ((!defined("SAVEFILE") || SAVEFILE==="") && (!isset($_GET["save"])) && count($_FILES)==0)
 {
 	echo "
 	<a href='https://github.com/Goufalite/kerbalscience' target='_NEW'>Kerbal Science on Github</a><br/>
@@ -182,7 +183,13 @@ if (!defined("SAVEFILE"))
   Upload your persistent.sfs save file : <input name='savefile' type='file' />
   <input type='submit' value='Submit' />
 </form>";
-if (count($_FILES)==0) exit();
+}
+
+if (count($_FILES)==0 && ((!defined("SAVEFILE") || SAVEFILE==="")) && !isset($_GET["save"])) exit();
+
+// handle conditions : first downloaded file, then GET argument, then SAVEFILE
+if (count($_FILES)==1)
+{
 	try {
 		$f = fopen($_FILES['savefile']['tmp_name'],"r");
 	}

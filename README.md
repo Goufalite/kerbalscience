@@ -1,3 +1,11 @@
+## YaLinqo depreciation in PHP8 (for the 2.5.0)
+
+After updating YaLinqo to the latest version, it has a depreciation message on the first `from` call. A bug exists on their side and I mitigated it by skipping the deprecated warning. 
+
+Updating this when it changes on their side.
+
+# Table of contents
+
 You can find here several external tools to help parsing the savefile of a KSP game and detail some information:
 - [science found on planets in a more friendly way](#Kerbal-Science)
 - [a tourist voyage planner](#tourist-planner)
@@ -7,7 +15,7 @@ You can find here several external tools to help parsing the savefile of a KSP g
 
 ## Installation
 
-All programs are in the form of a PHP webpage with a tiny bit of Javascript. They can run in download mode (provide a persistent.sfs file through a form) or permanent mode (open a file on your filesystem).
+All programs are in the form of a PHP8 webpage with a tiny bit of Javascript. They can run in download mode (provide a persistent.sfs file through a form) or permanent mode (open a file on your filesystem).
 
 Just clone the repo in your website's filesystem, launch [composer]( https://getcomposer.org/), adjust the config.inc.php file and serve it.
 
@@ -15,8 +23,8 @@ Just clone the repo in your website's filesystem, launch [composer]( https://get
 
 ### config.inc.php
 It contains the website's general configuration
-- **SAVEFILE** : location of your SFS savefile, empty if you want to use download mode
-- **STEAMPATH** : location of your KSP installation saves folder. You can then change your savefile by using the GET parameter "save" (for example save=mysavefile)
+- **STEAMPATH** : location of your KSP installation `saves` folder. You can then change your savefile folder by using the GET parameter "save" (for example `save=mysavefolder`), or else it will fallback to either searching for the `SAVEFILE` or ask to download a file.
+- **SAVEFILE** : location of the absolute path of your SFS savefile, empty or comment it if you want to use download mode
 - **LOCALE** : the locale of the translation
 
 ### bodies.json
@@ -138,8 +146,13 @@ Of course you can fork the code to display data on your own using the first tabl
 ## JSON export
 You can export all the science found in your savefile in this format by clicking on the "Toggle JSON" button.
 
+## About planet packs
+Because by nature planets change between packs and I can't follow them all. I made a "discovery" option to add planets that don't exist in the `bodies.json` with dummy values and currently trying it with the Galileo Planet Pack. Unfortunately the homeworld is called Gael but the science reports are named with Kerbin, and Gael has a different "high space" limit, meaning that swapping json files might be in order. I'll see later.
+
+If you want to make a PR with a planet pack, **please commit a separate bodies-PLANETPACK.json file**. Thanks!
+
 # Tourist planner
-This view show ALL your tourist missions to eventually regroup them in one flight and especially check if some crazy ones wants to land on Eve...
+This view shows ALL your tourist missions to eventually regroup them in one flight and especially check if some crazy ones wants to land on Eve...
 
 ![Visual demo kerbal science](https://vrac.goufastyle.org/pr/demo/kerbalscience/touristplanner.jpg)
 
