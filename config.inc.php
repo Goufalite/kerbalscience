@@ -1,9 +1,10 @@
 <?php
 
-define("STEAMPATH","D:/Jeux/valve/SteamApps/common/Kerbal Space Program/saves/");
+define("STEAMPATH","D:/jeux/valve/steamapps/common/Kerbal Space Program/saves/");
 
-define("SAVEFILE","D:/Jeux/valve/SteamApps/common/Kerbal Space Program/saves/mysave/persistent.sfs");
-//define("SAVEFILE","persistent.sfs");
+define("SAVEFILE","");
+//define("SAVEFILE","D:/Jeux/valve/SteamApps/common/Kerbal Space Program/saves/mysave/persistent.sfs");
+
 define("LOCALE","fr-fr");
 
 ?>
