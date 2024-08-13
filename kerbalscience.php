@@ -236,7 +236,7 @@ while ($l = fgets($f))
 		&& $inScience)
 	{
 		$foundScience = true;
-		if (!isset($matches[4]) || $matches[4]=="")
+		if (!isset($matches[4]) || $matches[4]=="" || $matches[4]=="NoBiome")
 		{
 			$matches[4]="Global";
 		}
@@ -432,6 +432,10 @@ foreach($bodies->bodies as $currBody)
 				preg_match("/ROCScience_(.*)/",$foundScienceType,$match);
 				$scienceTypeDisplay = substr(ucFirst(preg_replace("@([A-Z])@","<br/>\\1",$match[1])),5);
 				
+			}
+			else if (preg_match("/kerbalism_/",$foundScienceType))
+			{
+				$scienceTypeDisplay = preg_replace("/kerbalism_/","K_",$scienceTypeDisplay);
 			}
 			else {
 				// replace ION
