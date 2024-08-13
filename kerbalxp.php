@@ -56,7 +56,7 @@ function situationXp($bodyparam, $activity)
 	{
 		$activity = 4 -$activity;
 	}
-	$body = from($GLOBALS["bodies"]->bodies)->First('$v->name == $GLOBALS["idBody"]');
+	$body = @from($GLOBALS["bodies"]->bodies)->First('$v->name == $GLOBALS["idBody"]');
 	if ($body->name == "Kerbin")
 	{
 		return $body->xpSpecial[$activity];

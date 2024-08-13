@@ -375,7 +375,7 @@ foreach($contracts as $contract)
 			foreach($situations as $j => $s)
 			{
 				echo "<td class='cell ";
-				$act = from($kerbal->activityList)->where('$v->targetBody == $GLOBALS["v"]->id && $v->targetType == $GLOBALS["s"]')->toList();
+				$act = @from($kerbal->activityList)->where('$v->targetBody == $GLOBALS["v"]->id && $v->targetType == $GLOBALS["s"]')->toList();
 				if (count($act) != 0)
 				{
 					echo $act[0]->state;
@@ -409,7 +409,7 @@ foreach($bodies->bodies as $body)
 	}
 	
 	
-	$missions = from($contracts)->where(function($c) {
+	$missions = @from($contracts)->where(function($c) {
 		return  from($c->kerbalList)->any(function($k) {
 			return  from($k->activityList)->any(function ($a) {
 				return $a->targetBody == $GLOBALS["body"]->id ;

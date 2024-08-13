@@ -8,25 +8,28 @@
     "packages": [
         {
             "name": "athari/yalinqo",
-            "version": "v2.4.1",
+            "version": "v2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Athari/YaLinqo.git",
-                "reference": "d973f13b906a9d006b4d76b1542f7e6083f7bfc3"
+                "reference": "f837af690830fb35904c7b6a5f33052e46b86e57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Athari/YaLinqo/zipball/d973f13b906a9d006b4d76b1542f7e6083f7bfc3",
-                "reference": "d973f13b906a9d006b4d76b1542f7e6083f7bfc3",
+                "url": "https://api.github.com/repos/Athari/YaLinqo/zipball/f837af690830fb35904c7b6a5f33052e46b86e57",
+                "reference": "f837af690830fb35904c7b6a5f33052e46b86e57",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.5"
             },
+            "conflict": {
+                "phpunit/php-timer": ">=2"
+            },
             "require-dev": {
+                "php-coveralls/php-coveralls": "^2.5",
                 "phpdocumentor/phpdocumentor": "^2.8",
-                "phpunit/phpunit": "^4.6",
-                "satooshi/php-coveralls": "^2.0"
+                "phpunit/phpunit": "<6"
             },
             "type": "library",
             "extra": {
@@ -35,12 +38,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "YaLinqo\\": "YaLinqo/"
-                },
                 "files": [
                     "YaLinqo/Linq.php"
-                ]
+                ],
+                "psr-4": {
+                    "YaLinqo\\": "YaLinqo/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -60,7 +63,12 @@
                 "query",
                 "statistic"
             ],
-            "time": "2018-02-25T17:32:19+00:00"
+            "support": {
+                "docs": "http://athari.github.io/YaLinqo",
+                "issues": "https://github.com/Athari/YaLinqo/issues",
+                "source": "https://github.com/Athari/YaLinqo"
+            },
+            "time": "2023-07-11T15:51:42+00:00"
         }
     ],
     "packages-dev": [],
@@ -70,5 +78,6 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.6.0"
 }

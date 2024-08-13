@@ -225,10 +225,9 @@ foreach ($bodies->situations as $v)
 $situations = join("|",array_merge($situationsList,$bodies->recoveries));
 if (LOCALE!="")
 {
-	$bodiestranslated = from($bodies->bodies)->selectMany('$v ==> $v->translation')->select('$v ==> $v->{constant("LOCALE")}')->toList();
+	$bodiestranslated = @from($bodies->bodies)->selectMany('$v ==> $v->translation')->select('$v ==> $v->{constant("LOCALE")}')->toList();
 	$myTranslationSeparator = from($bodies->translationSeparator)->where('($tr,$k) ==> $k == constant("LOCALE")')->selectMany('($tr,$k) ==> $tr')->firstOrDefault();
 }
-
 $what = "";
 $body = "";
 $how = "";
