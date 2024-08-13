@@ -33,7 +33,7 @@ function ksptime($int, $display = false)
 	$adddate = $display ? 1: 0;
 	
 	$years = floor($int/(426*6*3600));
-	$sdays = $int % (426*6*3600);
+	$sdays = floor($int) % (426*6*3600);
 	$days = floor($sdays/(6*3600));
 	$shours = $sdays % (6*3600);
 	$hours = floor($shours/3600);
@@ -56,6 +56,7 @@ class Contract {
 	public $state;
 	public $values;
 	public $kerbalList;
+	public $agent;
 	public function expdate() {
 		if ($this->state=="Active")
 		{

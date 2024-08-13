@@ -22,7 +22,26 @@ class ScienceElement {
 	public $many;
 	public $how;
 	public $asteroid;
+	public $retrieved;
 }
+
+class Body {
+	
+	function __construct($body)
+	{
+		$this->name = $body;
+	}
+	public $name;
+	public $biomes = array("Global");
+	public $atmosphere = true;
+	public $atmosphereLimit = ["?","?"];
+	public $spaceLimit = "?";
+	public $water = true;
+	public $landable = true;
+	public $nbBiomes = 999;
+	public $xpMultiplier = 1;
+}
+
 
 $bodies = json_decode(file_get_contents("bodies.json"));
 ?>
@@ -203,7 +222,7 @@ foreach ($bodies->situations as $v)
 {
 	$situationsList[] = $v->name;
 }
-$situations = join(array_merge($situationsList,$bodies->recoveries),"|");
+$situations = join("|",array_merge($situationsList,$bodies->recoveries));
 if (LOCALE!="")
 {
 	$bodiestranslated = from($bodies->bodies)->selectMany('$v ==> $v->translation')->select('$v ==> $v->{constant("LOCALE")}')->toList();
@@ -250,6 +269,10 @@ while ($l = fgets($f))
 		$asteroid = $matches[5];
 		$newScience = new ScienceElement($body, $where, $what, $how, $asteroid);
 		$science[] = $newScience;
+		if (!from($bodies->bodies)->any('$v ==> $v->name == $GLOBALS["body"]'))
+		{
+			$bodies->bodies[] = new Body($body);
+		}
 		foreach ($bodies->bodies as $i => $b)
 		{
 			if ($b->name == $body)
